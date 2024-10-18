@@ -26,6 +26,19 @@ public class UserServiceImpl implements UserService {
     public User save(User user) {
         return userRepository.save(user);
     }
+    @Override
+    public User update(Long id, User userDetails) {
+        User user = userRepository.findById(id).orElse(null);
+        if (user != null) {
+            user.setUsername(userDetails.getUsername());
+            user.setPassword(userDetails.getPassword());
+            user.setEmail(userDetails.getEmail());
+            user.setRole(userDetails.getRole());
+            user.setGuest(userDetails.isGuest());
+            return userRepository.save(user);
+        }
+        return null; // Hoặc ném ngoại lệ nếu người dùng không tìm thấy
+    }
 
     @Override
     public void deleteById(Long id) {

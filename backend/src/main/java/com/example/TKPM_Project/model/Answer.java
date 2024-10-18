@@ -7,17 +7,27 @@ import jakarta.persistence.*;
 public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
-    @ManyToOne
-    @JoinColumn(name = "result_id", nullable = false)
-    private Result result;
+    private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "question_id", nullable = false)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
     private Question question;
 
-    @Column(nullable = false)
-    private String answerText;
+    @Column(name = "selected_choice")
+    private String selectedChoice;
 
-    // Getters và Setters
+    public Answer() {
+    }
+
+    public Answer(User user, Question question, String selectedChoice) {
+        this.user = user;
+        this.question = question;
+        this.selectedChoice = selectedChoice;
+    }
+
+    // Getters và Setters...
 }

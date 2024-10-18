@@ -14,7 +14,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Result findById(Long id) {
-        return resultRepository.findById(id).orElse(null);
+        return resultRepository.findById(Math.toIntExact(id)).orElse(null);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public void deleteById(Long id) {
-        resultRepository.deleteById(id);
+        resultRepository.deleteById(Math.toIntExact(id));
     }
 }

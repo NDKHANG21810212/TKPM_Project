@@ -15,8 +15,9 @@ public class Question {
     @Column(name = "correct_answer")
     private String correctAnswer;
 
-    @Column(name = "category_id")
-    private Integer categoryId; // ID danh mục câu hỏi
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category; // Liên kết với bảng Category
 
     @Column(name = "passage_text")
     private String passageText; // Đoạn văn liên quan đến câu hỏi
@@ -28,10 +29,10 @@ public class Question {
     public Question() {
     }
 
-    public Question(String questionText, String correctAnswer, Integer categoryId, String passageText, String audioPath) {
+    public Question(String questionText, String correctAnswer, Category category, String passageText, String audioPath) {
         this.questionText = questionText;
         this.correctAnswer = correctAnswer;
-        this.categoryId = categoryId;
+        this.category = category;
         this.passageText = passageText;
         this.audioPath = audioPath;
     }
@@ -61,12 +62,12 @@ public class Question {
         this.correctAnswer = correctAnswer;
     }
 
-    public Integer getCategoryId() {
-        return categoryId;
+    public Category getCategory() {
+        return category;
     }
 
-    public void setCategoryId(Integer categoryId) {
-        this.categoryId = categoryId;
+    public void setCategory(Category category) {
+        this.category = category;
     }
 
     public String getPassageText() {

@@ -1,4 +1,5 @@
 package com.example.TKPM_Project.model;
+
 import jakarta.persistence.*;
 
 @Entity

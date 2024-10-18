@@ -14,6 +14,9 @@ public class Category {
     @Column(name = "category_name")
     private String categoryName;
 
+    @Column(name = "difficulty_level") // Thêm cột độ khó
+    private String difficultyLevel; // Độ khó của thể loại
+
     // Danh sách các câu hỏi thuộc danh mục này
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Question> questions;
@@ -22,8 +25,9 @@ public class Category {
     public Category() {
     }
 
-    public Category(String categoryName) {
+    public Category(String categoryName, String difficultyLevel) {
         this.categoryName = categoryName;
+        this.difficultyLevel = difficultyLevel;
     }
 
     // Getters và Setters
@@ -41,6 +45,14 @@ public class Category {
 
     public void setCategoryName(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    public String getDifficultyLevel() {
+        return difficultyLevel;
+    }
+
+    public void setDifficultyLevel(String difficultyLevel) {
+        this.difficultyLevel = difficultyLevel;
     }
 
     public List<Question> getQuestions() {

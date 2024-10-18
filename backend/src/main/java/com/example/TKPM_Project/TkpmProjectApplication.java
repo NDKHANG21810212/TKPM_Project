@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class TkpmProjectApplication {
 
-	public static void main(String[] args) {
-		SpringApplication.run(TkpmProjectApplication.class, args);
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(TkpmProjectApplication.class, args);
+    }
 
 }
