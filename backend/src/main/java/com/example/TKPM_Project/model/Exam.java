@@ -20,6 +20,7 @@ public class Exam {
 
     @Column(name = "created_by")
     private String createdBy; // Người tạo đề
-
+    @Column(name = "difficulty_level")
+    private String difficultyLevel;
     // Getters và Setters
 }

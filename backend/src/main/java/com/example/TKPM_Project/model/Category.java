@@ -20,7 +20,9 @@ public class Category {
     // Danh sách các câu hỏi thuộc danh mục này
     @OneToMany(mappedBy = "category", cascade = CascadeType.ALL)
     private List<Question> questions;
-
+    @ManyToOne
+    @JoinColumn(name = "exam_id", referencedColumnName = "id")
+    private Exam exam;
     // Constructors
     public Category() {
     }

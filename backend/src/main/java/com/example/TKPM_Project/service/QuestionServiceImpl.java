@@ -37,6 +37,7 @@ public class QuestionServiceImpl implements QuestionService {
                 ques.setCategory(question.getCategory());
                 ques.setPassageText(question.getPassageText());
                 ques.setAudioPath(question.getAudioPath());
+                ques.setExam(question.getExam());
                 // Lưu lại câu hỏi đã cập nhật
                 return questionRepository.save(ques);
             // Hoặc ném ngoại lệ nếu câu hỏi không tìm thấy

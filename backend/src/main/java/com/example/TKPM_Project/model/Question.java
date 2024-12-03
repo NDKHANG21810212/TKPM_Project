@@ -25,16 +25,23 @@ public class Question {
     @Column(name = "audio_path")
     private String audioPath; // Đường dẫn đến file audio cho phần nghe
 
+
+    @ManyToOne
+    @JoinColumn(name = "exam_id", nullable = false)
+    private Exam exam;
+
     // Constructors
     public Question() {
     }
 
-    public Question(String questionText, String correctAnswer, Category category, String passageText, String audioPath) {
+    public Question(String questionText, String correctAnswer, Category category, String passageText, String audioPath, Exam exam) {
         this.questionText = questionText;
         this.correctAnswer = correctAnswer;
         this.category = category;
         this.passageText = passageText;
         this.audioPath = audioPath;
+        this.exam = exam;
+
     }
 
     // Getters và Setters
@@ -84,5 +91,11 @@ public class Question {
 
     public void setAudioPath(String audioPath) {
         this.audioPath = audioPath;
+    }
+    public void setExam(Exam exam) {
+        this.exam = exam;
+    }
+    public Exam getExam() {
+        return exam;
     }
 }

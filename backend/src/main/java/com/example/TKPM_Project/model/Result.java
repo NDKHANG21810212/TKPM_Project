@@ -1,7 +1,6 @@
 package com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
-
 import java.time.LocalDate;
 
 @Entity
@@ -13,13 +12,18 @@ public class Result {
 
     // Liên kết với bảng User
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @Column(name = "exam_score")
+    // Liên kết với bảng Exam
+    @ManyToOne
+    @JoinColumn(name = "exam_id", nullable = false)
+    private Exam exam;
+
+    @Column(name = "exam_score", nullable = false)
     private Double score;
 
-    @Column(name = "exam_date")
+    @Column(name = "exam_date", nullable = false)
     private LocalDate examDate;
 
     // Constructor không tham số
@@ -27,8 +31,9 @@ public class Result {
     }
 
     // Constructor có tham số
-    public Result(User user, Double score, LocalDate examDate) {
+    public Result(User user, Exam exam, Double score, LocalDate examDate) {
         this.user = user;
+        this.exam = exam;
         this.score = score;
         this.examDate = examDate;
     }
@@ -48,6 +53,14 @@ public class Result {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Exam getExam() {
+        return exam;
+    }
+
+    public void setExam(Exam exam) {
+        this.exam = exam;
     }
 
     public Double getScore() {
