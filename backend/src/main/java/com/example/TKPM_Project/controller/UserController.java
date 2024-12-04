@@ -1,15 +1,17 @@
-package com.example.TKPM_Project.controller;
+package src.main.java.com.example.TKPM_Project.controller;
 
-import com.example.TKPM_Project.model.User;
-import com.example.TKPM_Project.service.UserService;
+import src.main.java.com.example.TKPM_Project.model.User;
+import src.main.java.com.example.TKPM_Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/users")
+@CrossOrigin(origins = "http://localhost:3000") // Hỗ trợ frontend tại port 3000
 public class UserController {
 
     @Autowired
@@ -31,14 +33,14 @@ public class UserController {
 
     // Thêm mới người dùng
     @PostMapping
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User createdUser = userService.save(user);
         return ResponseEntity.ok(createdUser);
     }
 
     // Cập nhật thông tin người dùng
     @PutMapping("/{id}")
-    public ResponseEntity<User> updateUser(@PathVariable Long id, @RequestBody User userDetails) {
+    public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User userDetails) {
         User updatedUser = userService.update(id, userDetails);
         return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
     }

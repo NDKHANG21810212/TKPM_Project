@@ -1,7 +1,7 @@
-package com.example.TKPM_Project.service;
+package src.main.java.com.example.TKPM_Project.service;
 
-import com.example.TKPM_Project.model.Answer;
-import com.example.TKPM_Project.repository.AnswerRepository;
+import src.main.java.com.example.TKPM_Project.model.Answer;
+import src.main.java.com.example.TKPM_Project.repository.AnswerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;

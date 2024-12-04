@@ -1,7 +1,7 @@
-package com.example.TKPM_Project.service;
+package src.main.java.com.example.TKPM_Project.service;
 
-import com.example.TKPM_Project.model.Result;
-import com.example.TKPM_Project.repository.ResultRepository;
+import src.main.java.com.example.TKPM_Project.model.Result;
+import src.main.java.com.example.TKPM_Project.repository.ResultRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -14,7 +14,7 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public Result findById(Long id) {
-        return resultRepository.findById(Math.toIntExact(id)).orElse(null);
+        return resultRepository.findById(id).orElse(null);
     }
 
     @Override
@@ -29,6 +29,6 @@ public class ResultServiceImpl implements ResultService {
 
     @Override
     public void deleteById(Long id) {
-        resultRepository.deleteById(Math.toIntExact(id));
+        resultRepository.deleteById(id);
     }
 }

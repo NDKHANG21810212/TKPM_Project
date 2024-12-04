@@ -1,6 +1,6 @@
-package com.example.TKPM_Project.service;
+package src.main.java.com.example.TKPM_Project.service;
 
-import com.example.TKPM_Project.model.SpeakingResponse;
+import src.main.java.com.example.TKPM_Project.model.SpeakingResponse;
 
 import java.util.List;
 

@@ -1,21 +1,24 @@
-package com.example.TKPM_Project.controller;
+package src.main.java.com.example.TKPM_Project.controller;
 
-import com.example.TKPM_Project.model.Question;
-import com.example.TKPM_Project.service.QuestionService;
+import src.main.java.com.example.TKPM_Project.model.Question;
+import src.main.java.com.example.TKPM_Project.service.QuestionService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/questions")
+@CrossOrigin(origins = "http://localhost:3000") // Hỗ trợ frontend tại port 3000
 public class QuestionController {
 
     @Autowired
     private QuestionService questionService;
 
-    // Lấy danh sách tất cả các câu hỏi
+    // Lấy danh sách tất cả câu hỏi
     @GetMapping
     public ResponseEntity<List<Question>> getAllQuestions() {
         List<Question> questions = questionService.findAll();
@@ -31,14 +34,14 @@ public class QuestionController {
 
     // Thêm mới câu hỏi
     @PostMapping
-    public ResponseEntity<Question> createQuestion(@RequestBody Question question) {
+    public ResponseEntity<Question> createQuestion(@Valid @RequestBody Question question) {
         Question createdQuestion = questionService.save(question);
         return ResponseEntity.ok(createdQuestion);
     }
 
     // Cập nhật câu hỏi
     @PutMapping("/{id}")
-    public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @RequestBody Question questionDetails) {
+    public ResponseEntity<Question> updateQuestion(@PathVariable Long id, @Valid @RequestBody Question questionDetails) {
         Question updatedQuestion = questionService.update(id, questionDetails);
         return updatedQuestion != null ? ResponseEntity.ok(updatedQuestion) : ResponseEntity.notFound().build();
     }

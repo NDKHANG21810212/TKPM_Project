@@ -1,15 +1,17 @@
-package com.example.TKPM_Project.controller;
+package src.main.java.com.example.TKPM_Project.controller;
 
-import com.example.TKPM_Project.model.Category;
-import com.example.TKPM_Project.service.CategoryService;
+import src.main.java.com.example.TKPM_Project.model.Category;
+import src.main.java.com.example.TKPM_Project.service.CategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
 @RequestMapping("/api/categories")
+@CrossOrigin(origins = "http://localhost:3000") // Hỗ trợ frontend tại port 3000
 public class CategoryController {
 
     @Autowired
@@ -31,14 +33,14 @@ public class CategoryController {
 
     // Thêm mới danh mục
     @PostMapping
-    public ResponseEntity<Category> createCategory(@RequestBody Category category) {
+    public ResponseEntity<Category> createCategory(@Valid @RequestBody Category category) {
         Category createdCategory = categoryService.save(category);
         return ResponseEntity.ok(createdCategory);
     }
 
     // Cập nhật danh mục
     @PutMapping("/{id}")
-    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @RequestBody Category categoryDetails) {
+    public ResponseEntity<Category> updateCategory(@PathVariable Long id, @Valid @RequestBody Category categoryDetails) {
         Category updatedCategory = categoryService.update(id, categoryDetails);
         return updatedCategory != null ? ResponseEntity.ok(updatedCategory) : ResponseEntity.notFound().build();
     }

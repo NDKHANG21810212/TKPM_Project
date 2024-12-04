@@ -1,4 +1,4 @@
-package com.example.TKPM_Project.model;
+package src.main.java.com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
 import java.time.LocalDate;
