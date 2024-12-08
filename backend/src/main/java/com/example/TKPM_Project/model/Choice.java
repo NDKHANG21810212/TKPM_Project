@@ -13,6 +13,38 @@ public class Choice {
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
 
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getChoiceText() {
+        return choiceText;
+    }
+
+    public void setChoiceText(String choiceText) {
+        this.choiceText = choiceText;
+    }
+
+    public boolean isCorrect() {
+        return isCorrect;
+    }
+
+    public void setCorrect(boolean correct) {
+        isCorrect = correct;
+    }
+
     @Column(nullable = false)
     private String choiceText;
 

@@ -2,7 +2,7 @@ package src.main.java.com.example.TKPM_Project.controller;
 
 import src.main.java.com.example.TKPM_Project.model.Question;
 import src.main.java.com.example.TKPM_Project.service.QuestionService;
-
+import src.main.java.com.example.TKPM_Project.service.AnswerAnalysisService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -51,5 +51,22 @@ public class QuestionController {
     public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
         questionService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @Autowired
+    private AnswerAnalysisService answerAnalysisService;  // Dịch vụ tổng hợp
+
+    // Phân tích câu trả lời văn bản
+    @PostMapping("/analyzeTextAnswer")
+    public ResponseEntity<String> analyzeTextAnswer(@RequestParam String userAnswer) throws Exception {
+        String feedback = answerAnalysisService.analyzeTextAnswer(userAnswer);
+        return ResponseEntity.ok(feedback);
+    }
+
+    // Phân tích câu trả lời từ âm thanh (cung cấp URL âm thanh)
+    @PostMapping("/analyzeAudioAnswer")
+    public ResponseEntity<String> analyzeAudioAnswer(@RequestParam String audioUrl) throws Exception {
+        String feedback = answerAnalysisService.analyzeAudioAnswer(audioUrl);
+        return ResponseEntity.ok(feedback);
     }
 }

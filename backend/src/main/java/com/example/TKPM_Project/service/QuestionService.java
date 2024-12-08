@@ -11,4 +11,5 @@ public interface QuestionService {
     Question save(Question question);
     Question update(Long id, Question question);
     void deleteById(Long id);
+    String analyzeAnswerWithLLM(Long questionId, String userAnswer) throws Exception;
 }

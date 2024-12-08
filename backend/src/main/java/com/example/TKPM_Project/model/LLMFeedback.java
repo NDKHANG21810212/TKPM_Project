@@ -19,5 +19,35 @@ public class LLMFeedback {
     @Column
     private String suggestions; // Gợi ý cải thiện
 
-    // Getters và Setters
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public Result getResult() {
+        return result;
+    }
+
+    public void setResult(Result result) {
+        this.result = result;
+    }
+
+    public String getFeedbackText() {
+        return feedbackText;
+    }
+
+    public void setFeedbackText(String feedbackText) {
+        this.feedbackText = feedbackText;
+    }
+
+    public String getSuggestions() {
+        return suggestions;
+    }
+
+    public void setSuggestions(String suggestions) {
+        this.suggestions = suggestions;
+    }
 }

@@ -12,7 +12,8 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
-
+    @Autowired
+    private LLMApiService llmApiService;
     @Override
     public Question findById(Long id) {
         return questionRepository.findById(id).orElse(null);
@@ -47,5 +48,15 @@ public class QuestionServiceImpl implements QuestionService {
     @Override
     public void deleteById(Long id) {
         questionRepository.deleteById(id);
+    }
+    @Override
+    public String analyzeAnswerWithLLM(Long questionId, String userAnswer) throws Exception {
+        // Tìm câu hỏi từ cơ sở dữ liệu (nếu cần thiết)
+        Question question = questionRepository.findById(questionId).orElse(null);
+        if (question != null) {
+            // Sử dụng LLMApiService để phân tích câu trả lời
+            return llmApiService.analyzeAnswer(userAnswer);
+        }
+        return "Câu hỏi không tồn tại.";
     }
 }

@@ -43,7 +43,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User userDetails) {
         User updatedUser = userService.update(id, userDetails);
         return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
-    }
+    }   
 
     // Xóa người dùng theo ID
     @DeleteMapping("/{id}")

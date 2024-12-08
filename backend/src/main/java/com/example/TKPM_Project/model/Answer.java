@@ -29,5 +29,36 @@ public class Answer {
         this.selectedChoice = selectedChoice;
     }
 
-    // Getters và Setters...
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public Question getQuestion() {
+        return question;
+    }
+
+    public void setQuestion(Question question) {
+        this.question = question;
+    }
+
+    public String getSelectedChoice() {
+        return selectedChoice;
+    }
+
+    public void setSelectedChoice(String selectedChoice) {
+        this.selectedChoice = selectedChoice;
+    }
+// Getters và Setters...
 }
