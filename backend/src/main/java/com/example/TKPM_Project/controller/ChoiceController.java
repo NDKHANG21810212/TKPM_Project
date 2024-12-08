@@ -1,6 +1,6 @@
-package src.main.java.com.example.TKPM_Project.controller;
-import src.main.java.com.example.TKPM_Project.model.Choice;
-import src.main.java.com.example.TKPM_Project.service.ChoiceService;
+package com.example.TKPM_Project.controller;
+import com.example.TKPM_Project.model.Choice;
+import com.example.TKPM_Project.service.ChoiceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,7 +1,7 @@
-package src.main.java.com.example.TKPM_Project.controller;
+package com.example.TKPM_Project.controller;
 
-import src.main.java.com.example.TKPM_Project.model.Exam;
-import src.main.java.com.example.TKPM_Project.service.ExamService;
+import com.example.TKPM_Project.model.Exam;
+import com.example.TKPM_Project.service.ExamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

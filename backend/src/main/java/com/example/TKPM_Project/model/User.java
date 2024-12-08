@@ -1,4 +1,4 @@
-package src.main.java.com.example.TKPM_Project.model;
+package com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
 import java.util.List;
@@ -19,8 +19,10 @@ public class User {
     @Column(name = "email")
     private String email;
 
+    // Thay vì String, ta sử dụng enum Role
+    @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    private String role; // Vai trò của người dùng (admin, user,...)
+    private Role role; // Vai trò của người dùng (ADMIN, TEACHER, STUDENT)
 
     @Column(name = "is_guest")
     private boolean isGuest; // Đánh dấu đây là người dùng khách nếu true
@@ -30,11 +32,10 @@ public class User {
     private List<Answer> answers;
 
     // Constructor không tham số
-    public User() {
-    }
+    public User() {}
 
     // Constructor có tham số
-    public User(String username, String password, String email, String role, boolean isGuest) {
+    public User(String username, String password, String email, Role role, boolean isGuest) {
         this.username = username;
         this.password = password;
         this.email = email;
@@ -75,11 +76,11 @@ public class User {
         this.email = email;
     }
 
-    public String getRole() {
+    public Role getRole() {
         return role;
     }
 
-    public void setRole(String role) {
+    public void setRole(Role role) {
         this.role = role;
     }
 

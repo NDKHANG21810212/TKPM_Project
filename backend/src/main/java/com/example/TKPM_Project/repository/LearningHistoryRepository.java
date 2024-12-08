@@ -1,6 +1,6 @@
-package src.main.java.com.example.TKPM_Project.repository;
+package com.example.TKPM_Project.repository;
 
-import src.main.java.com.example.TKPM_Project.model.LearningHistory;
+import com.example.TKPM_Project.model.LearningHistory;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;

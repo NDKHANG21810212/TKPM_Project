@@ -1,6 +1,6 @@
-package src.main.java.com.example.TKPM_Project.controller;
-import src.main.java.com.example.TKPM_Project.model.SpeakingResponse;
-import src.main.java.com.example.TKPM_Project.service.SpeakingResponseService;
+package com.example.TKPM_Project.controller;
+import com.example.TKPM_Project.model.SpeakingResponse;
+import com.example.TKPM_Project.service.SpeakingResponseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

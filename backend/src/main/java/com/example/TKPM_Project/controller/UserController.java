@@ -1,7 +1,7 @@
-package src.main.java.com.example.TKPM_Project.controller;
-
-import src.main.java.com.example.TKPM_Project.model.User;
-import src.main.java.com.example.TKPM_Project.service.UserService;
+package com.example.TKPM_Project.controller;
+import com.example.TKPM_Project.model.Role;
+import com.example.TKPM_Project.model.User;
+import com.example.TKPM_Project.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -34,6 +34,10 @@ public class UserController {
     // Thêm mới người dùng
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
+        // Khi tạo người dùng mới, đảm bảo vai trò được gán đúng
+        if (user.getRole() == null) {
+            user.setRole(Role.STUDENT);  // Mặc định là học sinh
+        }
         User createdUser = userService.save(user);
         return ResponseEntity.ok(createdUser);
     }
@@ -43,7 +47,7 @@ public class UserController {
     public ResponseEntity<User> updateUser(@PathVariable Long id, @Valid @RequestBody User userDetails) {
         User updatedUser = userService.update(id, userDetails);
         return updatedUser != null ? ResponseEntity.ok(updatedUser) : ResponseEntity.notFound().build();
-    }   
+    }
 
     // Xóa người dùng theo ID
     @DeleteMapping("/{id}")

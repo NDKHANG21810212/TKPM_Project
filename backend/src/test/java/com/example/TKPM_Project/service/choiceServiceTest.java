@@ -1,7 +1,7 @@
-package src.test.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
-import src.main.java.com.example.TKPM_Project.model.Choice;
-import src.main.java.com.example.TKPM_Project.repository.ChoiceRepository;
+import com.example.TKPM_Project.model.Choice;
+import com.example.TKPM_Project.repository.ChoiceRepository;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -11,8 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import org.mockito.*;
-import src.main.java.com.example.TKPM_Project.service.ChoiceService;
-import src.main.java.com.example.TKPM_Project.service.ChoiceServiceImpl;
+import com.example.TKPM_Project.service.ChoiceService;
+import com.example.TKPM_Project.service.ChoiceServiceImpl;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;

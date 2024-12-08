@@ -1,4 +1,4 @@
-package src.main.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;

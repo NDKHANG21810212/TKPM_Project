@@ -1,9 +1,9 @@
-package src.main.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
-import src.main.java.com.example.TKPM_Project.model.LearningGoal;
-import src.main.java.com.example.TKPM_Project.model.Log;
-import src.main.java.com.example.TKPM_Project.repository.LearningGoalRepository;
-import src.main.java.com.example.TKPM_Project.repository.LogRepository;
+import com.example.TKPM_Project.model.LearningGoal;
+import com.example.TKPM_Project.model.Log;
+import com.example.TKPM_Project.repository.LearningGoalRepository;
+import com.example.TKPM_Project.repository.LogRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -1,7 +1,7 @@
-package src.main.java.com.example.TKPM_Project.model;
+package com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
-import src.main.java.com.example.TKPM_Project.service.LLMApiService;
+import com.example.TKPM_Project.service.LLMApiService;
 
 @Entity
 @Table(name = "questions")

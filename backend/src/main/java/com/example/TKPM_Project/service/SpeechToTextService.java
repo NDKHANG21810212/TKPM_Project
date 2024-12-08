@@ -1,4 +1,4 @@
-package src.main.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

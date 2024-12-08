@@ -1,7 +1,7 @@
-package src.main.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
-import src.main.java.com.example.TKPM_Project.model.Category;
-import src.main.java.com.example.TKPM_Project.model.Exam;
+import com.example.TKPM_Project.model.Category;
+import com.example.TKPM_Project.model.Exam;
 
 import java.util.List;
 

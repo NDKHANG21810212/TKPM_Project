@@ -1,50 +1,51 @@
 -- Sử dụng cơ sở dữ liệu phù hợp
 USE vstep_exam_db;
+START TRANSACTION;
 -- Thêm câu hỏi cho từng phần (categories và audio)
 -- Phần 1: Câu hỏi 1-8
-INSERT INTO questions (audio_path, question_text, category_id) VALUES
-               ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1),
-               ('/audio/T1-Part1.mp3', 'What is being advertised?', 1),
-               ('/audio/T1-Part1.mp3', 'According to the announcement, what will be built near Berryville?', 1),
-               ('/audio/T1-Part1.mp3', 'Who is this announcement probably for?', 1),
-                ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1),
-               ('/audio/T1-Part1.mp3', 'What is this message about?', 1),
-               ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1),
-               ('/audio/T1-Part1.mp3', 'Who is the speaker?', 1);
+INSERT INTO questions (audio_path, question_text, category_id,exam_id) VALUES
+               ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1,1),
+               ('/audio/T1-Part1.mp3', 'What is being advertised?', 1,1),
+               ('/audio/T1-Part1.mp3', 'According to the announcement, what will be built near Berryville?', 1,1),
+               ('/audio/T1-Part1.mp3', 'Who is this announcement probably for?', 1,1),
+                ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1,1),
+               ('/audio/T1-Part1.mp3', 'What is this message about?', 1,1),
+               ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1,1),
+               ('/audio/T1-Part1.mp3', 'Who is the speaker?', 1,1);
 -- Phần 2: Câu hỏi 9-20
-INSERT INTO questions (audio_path, correct_answer, passage_text, question_text, category_id) VALUES
-                   ('T1-Part 2', 'To confirm an appointment', 'Questions 9 to 12 refer to the following conversation.', 'Why is the woman calling?', 2),
-                   ('T1-Part 2', 'He is very busy these days.', 'Questions 9 to 12 refer to the following conversation.', 'What is probably true about the man?', 2),
-                   ('T1-Part 2', 'Show up to his appointment a little early', 'Questions 9 to 12 refer to the following conversation.', 'What does the woman ask the man to do?', 2),
-                   ('T1-Part 2', 'Some insurance documents', 'Questions 9 to 12 refer to the following conversation.', 'What will the man likely take to his appointment?', 2),
-                   ('T1-Part 2', 'Physicians', 'Questions 13 to 16 refer to the following conversation.', 'Who most likely are they?', 2),
-                   ('T1-Part 2', 'Her mother-in-law', 'Questions 13 to 16 refer to the following conversation.', 'Who has been mentioning the study to the woman?', 2),
-                   ('T1-Part 2', 'Friday', 'Questions 13 to 16 refer to the following conversation.', 'When will they likely attend the conference?', 2),
-                   ('T1-Part 2', 'Her mother-in-law', 'Questions 13 to 16 refer to the following conversation.', 'Who is going to visit the woman?', 2),
-                   ('T1-Part 2', 'A newly released product', 'Questions 17 to 20 refer to the following conversation.', 'What are they talking about?', 2),
-                   ('T1-Part 2', 'The free service they provided', 'Questions 17 to 20 refer to the following conversation.', 'According to the man, what was the customer most satisfied with?', 2),
-                   ('T1-Part 2', 'The great service', 'Questions 17 to 20 refer to the following conversation.', 'What do the speakers feel makes customers happy?', 2),
-                   ('T1-Part 2', 'He thought the warranty had expired.', 'Questions 17 to 20 refer to the following conversation.', 'What is true about the customer?', 2);
+INSERT INTO questions (audio_path, correct_answer, passage_text, question_text, category_id,exam_id) VALUES
+                   ('T1-Part 2', 'To confirm an appointment', 'Questions 9 to 12 refer to the following conversation.', 'Why is the woman calling?', 1,1),
+                   ('T1-Part 2', 'He is very busy these days.', 'Questions 9 to 12 refer to the following conversation.', 'What is probably true about the man?', 1,1),
+                   ('T1-Part 2', 'Show up to his appointment a little early', 'Questions 9 to 12 refer to the following conversation.', 'What does the woman ask the man to do?', 1,1),
+                   ('T1-Part 2', 'Some insurance documents', 'Questions 9 to 12 refer to the following conversation.', 'What will the man likely take to his appointment?', 1,1),
+                   ('T1-Part 2', 'Physicians', 'Questions 13 to 16 refer to the following conversation.', 'Who most likely are they?', 1,1),
+                   ('T1-Part 2', 'Her mother-in-law', 'Questions 13 to 16 refer to the following conversation.', 'Who has been mentioning the study to the woman?', 1,1),
+                   ('T1-Part 2', 'Friday', 'Questions 13 to 16 refer to the following conversation.', 'When will they likely attend the conference?', 1,1),
+                   ('T1-Part 2', 'Her mother-in-law', 'Questions 13 to 16 refer to the following conversation.', 'Who is going to visit the woman?', 1,1),
+                   ('T1-Part 2', 'A newly released product', 'Questions 17 to 20 refer to the following conversation.', 'What are they talking about?', 1,1),
+                   ('T1-Part 2', 'The free service they provided', 'Questions 17 to 20 refer to the following conversation.', 'According to the man, what was the customer most satisfied with?', 1,1),
+                   ('T1-Part 2', 'The great service', 'Questions 17 to 20 refer to the following conversation.', 'What do the speakers feel makes customers happy?', 1,1),
+                   ('T1-Part 2', 'He thought the warranty had expired.', 'Questions 17 to 20 refer to the following conversation.', 'What is true about the customer?', 1,1);
 -- Phần 3: Câu hỏi 21-35
-INSERT INTO questions (audio_path, question_text, category_id) VALUES
-                    (3, 'Why is the woman visiting this office?', 3),
-                    (3, 'Why are there few people in the honors program?', 3),
-                    (3, 'What subject is NOT included if the woman chooses Political Science?', 3),
-                    (3, 'Which is one of the requirements if the woman chooses International Relation program?', 3),
-                    (3, 'What is NOT a reason for the Political Science Department\'s elaborate registration process?', 3),
-                    (3, 'What happened to the debate club meeting?', 3),
-                    (3, 'Why couldn\'t the man receive the email?', 3),
-                    (3, 'What is going to happen with the debate club\'s meeting room?', 3),
-                    (3, 'What is true about the debate club\'s meeting room?', 3),
-                    (3, 'What can be inferred about the man?', 3),
-                    (3, 'What is the professor mainly talking about?', 3),
-                    (3, 'According to the lecture, what is wrong with space travel in most science fiction?', 3),
-                    (3, 'According to the professor, how long does it take to travel to the closest star to Earth?', 3),
-                    (3, 'What does the professor NOT say about the movie 2001: A Space Odyssey?', 3),
-                    (3, 'What can be inferred about science fiction?', 3);
-
+INSERT INTO questions (audio_path, question_text, category_id,exam_id) VALUES
+                    (3, 'Why is the woman visiting this office?', 1,1),
+                    (3, 'Why are there few people in the honors program?', 1,1),
+                    (3, 'What subject is NOT included if the woman chooses Political Science?', 1,1),
+                    (3, 'Which is one of the requirements if the woman chooses International Relation program?', 1,1),
+                    (3, 'What is NOT a reason for the Political Science Department\'s elaborate registration process?', 1,1),
+                    (3, 'What happened to the debate club meeting?', 1,1),
+                    (3, 'Why couldn\'t the man receive the email?', 1,1),
+                    (3, 'What is going to happen with the debate club\'s meeting room?', 1,1),
+                    (3, 'What is true about the debate club\'s meeting room?', 1,1),
+                    (3, 'What can be inferred about the man?', 1,1),
+                    (3, 'What is the professor mainly talking about?', 1,1),
+                    (3, 'According to the lecture, what is wrong with space travel in most science fiction?', 1,1),
+                    (3, 'According to the professor, how long does it take to travel to the closest star to Earth?', 1,1),
+                    (3, 'What does the professor NOT say about the movie 2001: A Space Odyssey?', 1,1),
+                    (3, 'What can be inferred about science fiction?', 1,1);
 -- Thêm các lựa chọn đáp án cho từng câu hỏi
 -- Choices và đáp án cho Phần 1 (câu 1-8)
+
 INSERT INTO choices (question_id, choice_text, is_correct) VALUES
 -- Câu 1
 (1, 'To schedule a checkup', FALSE),
@@ -147,7 +148,7 @@ INSERT INTO choices (question_id, choice_text,is_correct) VALUES
 (23, 'Writing seminar', FALSE),
 (23, 'Economics', TRUE)
 -- Các câu còn lại cho Phần 3
-;
+;COMMIT;
 -- Thêm đáp án đúng vào bảng answers
 INSERT INTO answers (selected_choice, question_id, user_id) VALUES
 -- Câu 1

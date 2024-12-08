@@ -1,8 +1,9 @@
-package src.main.java.com.example.TKPM_Project.model;
+package com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
 
 @Entity
+
 @Table(name = "answers")
 public class Answer {
     @Id

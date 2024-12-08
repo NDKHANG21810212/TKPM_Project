@@ -1,7 +1,7 @@
-package src.main.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
-import src.main.java.com.example.TKPM_Project.model.SpeakingResponse;
-import src.main.java.com.example.TKPM_Project.repository.SpeakingResponseRepository;
+import com.example.TKPM_Project.model.SpeakingResponse;
+import com.example.TKPM_Project.repository.SpeakingResponseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

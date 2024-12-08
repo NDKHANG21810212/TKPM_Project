@@ -1,6 +1,6 @@
-package src.main.java.com.example.TKPM_Project.service;
+package com.example.TKPM_Project.service;
 
-import src.main.java.com.example.TKPM_Project.model.Answer;
+import com.example.TKPM_Project.model.Answer;
 import java.util.List;
 
 public interface AnswerService {

@@ -1,6 +1,6 @@
-package src.main.java.com.example.TKPM_Project.service;
-import src.main.java.com.example.TKPM_Project.model.Category;
-import src.main.java.com.example.TKPM_Project.repository.CategoryRepository;
+package com.example.TKPM_Project.service;
+import com.example.TKPM_Project.model.Category;
+import com.example.TKPM_Project.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +24,7 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Category save(src.main.java.com.example.TKPM_Project.model.@Valid Category category) {
+    public Category save(com.example.TKPM_Project.model.@Valid Category category) {
         return categoryRepository.save(category);
     }
     @Override

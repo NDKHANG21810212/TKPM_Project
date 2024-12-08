@@ -1,6 +1,6 @@
-package src.main.java.com.example.TKPM_Project.repository;
+package com.example.TKPM_Project.repository;
 
-import src.main.java.com.example.TKPM_Project.model.Question;
+import com.example.TKPM_Project.model.Question;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -12,11 +12,10 @@ import java.util.List;
 public interface QuestionRepository extends JpaRepository<Question, Long> {
 
     // Tìm câu hỏi theo bài thi
-    @Query("SELECT q FROM Question q WHERE q.exam.id = :examId")
-    List<Question> findByExamId(@Param("examId") Long examId);
+    @Query("SELECT q FROM Question q JOIN q.exam e WHERE e.id = :examId")
+    List<Question> findByExamId(@Param("examId") Integer examId);
 
     // Tìm câu hỏi theo danh mục
     @Query("SELECT q FROM Question q WHERE q.category.id = :categoryId")
     List<Question> findByCategoryId(@Param("categoryId") Long categoryId);
 }
-

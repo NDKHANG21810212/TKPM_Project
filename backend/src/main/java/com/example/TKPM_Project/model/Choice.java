@@ -1,10 +1,11 @@
-package src.main.java.com.example.TKPM_Project.model;
+package com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
 
 @Entity
 @Table(name = "choices")
 public class Choice {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -12,6 +13,22 @@ public class Choice {
     @ManyToOne
     @JoinColumn(name = "question_id", nullable = false)
     private Question question;
+
+    @Column(nullable = false)
+    private String choiceText;
+
+    @Column(name = "is_correct", nullable = false)
+    private boolean isCorrect;
+
+    // Constructor mặc định (JPA yêu cầu có constructor mặc định)
+    public Choice() {}
+
+    // Constructor với các tham số
+    public Choice(String choiceText, boolean isCorrect, Question question) {
+        this.choiceText = choiceText;
+        this.isCorrect = isCorrect;
+        this.question = question;
+    }
 
     public Integer getId() {
         return id;
@@ -44,12 +61,4 @@ public class Choice {
     public void setCorrect(boolean correct) {
         isCorrect = correct;
     }
-
-    @Column(nullable = false)
-    private String choiceText;
-
-    @Column(name = "is_correct", nullable = false)
-    private boolean isCorrect;
-
-    // Getters và Setters
 }

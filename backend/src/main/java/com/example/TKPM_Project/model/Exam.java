@@ -1,9 +1,9 @@
-package src.main.java.com.example.TKPM_Project.model;
+package com.example.TKPM_Project.model;
 
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "Exam")
+@Table(name = "exam")
 public class Exam {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
