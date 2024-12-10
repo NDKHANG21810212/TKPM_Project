@@ -4,6 +4,7 @@ import com.example.TKPM_Project.model.User;
 import com.example.TKPM_Project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -13,7 +14,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     private UserRepository userRepository;
 
-    @Override
+     @Override
     public User findById(Long id) {
         return userRepository.findById(id).orElse(null);
     }
@@ -25,6 +26,7 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User save(User user) {
+        user.setPassword((user.getPassword()));  // Mã hóa mật khẩu khi lưu
         return userRepository.save(user);
     }
 
@@ -33,10 +35,9 @@ public class UserServiceImpl implements UserService {
         User user = userRepository.findById(id).orElse(null);
         if (user != null) {
             user.setUsername(userDetails.getUsername());
-            user.setPassword(userDetails.getPassword());
+            user.setPassword(userDetails.getPassword());  // Mã hóa mật khẩu khi cập nhật
             user.setEmail(userDetails.getEmail());
-            user.setRole(userDetails.getRole());  // Cập nhật vai trò
-            user.setGuest(userDetails.isGuest());
+            user.setRole(userDetails.getRole());
             return userRepository.save(user);
         }
         return null;
@@ -66,4 +67,10 @@ public class UserServiceImpl implements UserService {
     public boolean isStudent(User user) {
         return false;
     }
+    @Override
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
+
 }

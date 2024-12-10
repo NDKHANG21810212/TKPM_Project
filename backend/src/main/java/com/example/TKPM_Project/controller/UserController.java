@@ -1,13 +1,16 @@
 package com.example.TKPM_Project.controller;
+import com.example.TKPM_Project.model.LoginRequest;
 import com.example.TKPM_Project.model.Role;
 import com.example.TKPM_Project.model.User;
 import com.example.TKPM_Project.service.UserService;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/users")
@@ -36,7 +39,7 @@ public class UserController {
     public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         // Khi tạo người dùng mới, đảm bảo vai trò được gán đúng
         if (user.getRole() == null) {
-            user.setRole(Role.STUDENT);  // Mặc định là học sinh
+            user.setRole(Role.Student);  // Mặc định là học sinh
         }
         User createdUser = userService.save(user);
         return ResponseEntity.ok(createdUser);
@@ -54,5 +57,22 @@ public class UserController {
     public ResponseEntity<Void> deleteUser(@PathVariable Long id) {
         userService.deleteById(id);
         return ResponseEntity.noContent().build();
+    }
+
+    // Đăng nhập
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
+        // Kiểm tra tài khoản và mật khẩu
+        if ("admin".equals(loginRequest.getUsername()) && "password".equals(loginRequest.getPassword())) {
+            return ResponseEntity.ok("Login successful!");
+        }
+        return ResponseEntity.status(401).body("Invalid credentials");
+    }
+
+    // Đăng xuất
+    @PostMapping("/logout")
+    public ResponseEntity<?> logout(HttpSession session) {
+        session.invalidate();  // Xóa thông tin session khi đăng xuất
+        return ResponseEntity.ok("Đăng xuất thành công");
     }
 }

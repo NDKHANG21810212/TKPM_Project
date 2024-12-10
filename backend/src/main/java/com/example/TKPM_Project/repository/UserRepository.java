@@ -13,10 +13,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // Tìm người dùng theo email
     Optional<User> findByEmail(String email);
-
     // Tìm người dùng theo tên người dùng (username)
-    Optional<User> findByUsername(String username);
-
+    User findByUsername(String username);
     // Tìm tất cả người dùng khách
     @Query("SELECT u FROM User u WHERE u.isGuest = true")
     List<User> findAllGuests();
