@@ -19,33 +19,29 @@ public class QuestionController {
     @Autowired
     private QuestionService questionService;
 
-    @Autowired
-    private ChoiceService choiceService; // Dịch vụ để lấy lựa chọn
+    protected String getExamPart() {
+        return null;
+    }
 
-    // Lấy danh sách tất cả câu hỏi kèm lựa chọn
     @GetMapping
     public ResponseEntity<List<Question>> getAllQuestions() {
-        List<Question> questions = questionService.findAll();
-        questions.forEach(q -> q.setChoices(choiceService.findByQuestion(q))); // Thêm lựa chọn vào câu hỏi
-        return ResponseEntity.ok(questions);
+        return ResponseEntity.ok(questionService.getQuestionsByExamPart(getExamPart()));
     }
 
-    // Các API khác (GET, POST, PUT, DELETE) không thay đổi
-
-    @Autowired
-    private AnswerAnalysisService answerAnalysisService;
-
-    // Phân tích câu trả lời văn bản
-    @PostMapping("/analyzeTextAnswer")
-    public ResponseEntity<String> analyzeTextAnswer(@RequestParam String userAnswer) throws Exception {
-        String feedback = answerAnalysisService.analyzeTextAnswer(userAnswer);
-        return ResponseEntity.ok(feedback);
+    @GetMapping("/{examId}")
+    public ResponseEntity<List<Question>> getQuestionsByExamId(@PathVariable Long examId) {
+        return ResponseEntity.ok(questionService.getQuestionsByExamPartAndExamId(getExamPart(), examId));
     }
 
-    // Phân tích câu trả lời từ âm thanh (cung cấp URL âm thanh)
-    @PostMapping("/analyzeAudioAnswer")
-    public ResponseEntity<String> analyzeAudioAnswer(@RequestParam String audioUrl) throws Exception {
-        String feedback = answerAnalysisService.analyzeAudioAnswer(audioUrl);
-        return ResponseEntity.ok(feedback);
+    @PostMapping
+    public ResponseEntity<Question> saveQuestion(@RequestBody Question question) {
+        question.setExamPart(getExamPart());
+        return ResponseEntity.ok(questionService.saveQuestion(question));
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteQuestion(@PathVariable Long id) {
+        questionService.deleteQuestion(id);
+        return ResponseEntity.noContent().build();
     }
 }

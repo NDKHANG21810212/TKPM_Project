@@ -18,4 +18,8 @@ public interface QuestionRepository extends JpaRepository<Question, Long> {
     // Tìm câu hỏi theo danh mục
     @Query("SELECT q FROM Question q WHERE q.category.id = :categoryId")
     List<Question> findByCategoryId(@Param("categoryId") Long categoryId);
+    @Query("SELECT q FROM Question q WHERE q.examPart = :examPart")
+    List<Question> findByExamPart(@Param("examPart") String examPart);
+    @Query("SELECT q FROM Question q WHERE q.examPart = :examPart AND q.exam.id = :examId")
+    List<Question> findByExamPartAndExamId(@Param("examPart") String examPart, @Param("examId") Long examId);
 }

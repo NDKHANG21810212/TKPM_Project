@@ -12,50 +12,23 @@ public class QuestionServiceImpl implements QuestionService {
 
     @Autowired
     private QuestionRepository questionRepository;
-    @Autowired
-    private LLMApiService llmApiService;
     @Override
-    public Question findById(Long id) {
-        return questionRepository.findById(id).orElse(null);
+    public List<Question> getQuestionsByExamPart(String examPart) {
+        return questionRepository.findByExamPart(examPart);
     }
 
     @Override
-    public List<Question> findAll() {
-        return questionRepository.findAll();
+    public List<Question> getQuestionsByExamPartAndExamId(String examPart, Long examId) {
+        return questionRepository.findByExamPartAndExamId(examPart, examId);
     }
 
     @Override
-    public Question save(Question question) {
+    public Question saveQuestion(Question question) {
         return questionRepository.save(question);
     }
+
     @Override
-    public Question update(Long id, Question question) {
-            Question ques = questionRepository.findById(id).orElse(null);
-            if (ques != null) {
-                // Cập nhật các thuộc tính của câu hỏi
-                ques.setQuestionText(question.getQuestionText());
-                ques.setCategory(question.getCategory());
-                ques.setPassageText(question.getPassageText());
-                ques.setAudioPath(question.getAudioPath());
-                ques.setExam(question.getExam());
-                // Lưu lại câu hỏi đã cập nhật
-                return questionRepository.save(ques);
-            // Hoặc ném ngoại lệ nếu câu hỏi không tìm thấy
-        }
-        return null; // Hoặc ném ngoại lệ nếu người dùng không tìm thấy
-    }
-    @Override
-    public void deleteById(Long id) {
+    public void deleteQuestion(Long id) {
         questionRepository.deleteById(id);
-    }
-    @Override
-    public String analyzeAnswerWithLLM(Long questionId, String userAnswer) throws Exception {
-        // Tìm câu hỏi từ cơ sở dữ liệu (nếu cần thiết)
-        Question question = questionRepository.findById(questionId).orElse(null);
-        if (question != null) {
-            // Sử dụng LLMApiService để phân tích câu trả lời
-            return llmApiService.analyzeAnswer(userAnswer);
-        }
-        return "Câu hỏi không tồn tại.";
     }
 }

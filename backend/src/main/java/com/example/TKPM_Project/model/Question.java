@@ -8,11 +8,12 @@ import java.util.List;
 @Entity
 @Table(name = "questions")
 public class Question {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "question_text")
+    @Column(name = "question_text", nullable = false)
     private String questionText;
 
     @ManyToOne
@@ -22,14 +23,34 @@ public class Question {
     @Column(name = "passage_text")
     private String passageText;
 
-    @Column(name = "audio_path")
-    private String audioPath;
+    @ManyToOne
+    @JoinColumn(name = "audio_id", referencedColumnName = "id")
+    private Audio audio; // Liên kết với Audio
 
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;
 
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<Choice> choices;
+
+    @Column(name = "exam_part", nullable = false)
+    private String examPart;
+
+    // Constructors
+    public Question() {}
+
+    public Question(String questionText, Category category, String passageText, Audio audio, Exam exam, String examPart) {
+        this.questionText = questionText;
+        this.category = category;
+        this.passageText = passageText;
+        this.audio = audio;
+        this.exam = exam;
+        this.examPart = examPart;
+    }
+
+    // Getters và Setters
     public Long getId() {
         return id;
     }
@@ -62,12 +83,12 @@ public class Question {
         this.passageText = passageText;
     }
 
-    public String getAudioPath() {
-        return audioPath;
+    public Audio getAudio() {
+        return audio;
     }
 
-    public void setAudioPath(String audioPath) {
-        this.audioPath = audioPath;
+    public void setAudio(Audio audio) {
+        this.audio = audio;
     }
 
     public Exam getExam() {
@@ -78,26 +99,19 @@ public class Question {
         this.exam = exam;
     }
 
-    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
-    private List<Choice> choices; // Mối quan hệ với các lựa chọn câu hỏi
-
-    // Constructors, Getters và Setters
-    public Question() {}
-
-    public Question(String questionText, Category category, String passageText, String audioPath, Exam exam) {
-        this.questionText = questionText;
-        this.category = category;
-        this.passageText = passageText;
-        this.audioPath = audioPath;
-        this.exam = exam;
-    }
-
-    // Getters và Setters
     public List<Choice> getChoices() {
         return choices;
     }
 
     public void setChoices(List<Choice> choices) {
         this.choices = choices;
+    }
+
+    public String getExamPart() {
+        return examPart;
+    }
+
+    public void setExamPart(String examPart) {
+        this.examPart = examPart;
     }
 }
