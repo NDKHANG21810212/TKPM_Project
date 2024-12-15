@@ -4,7 +4,6 @@ import com.example.TKPM_Project.model.User;
 import com.example.TKPM_Project.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.List;
 
@@ -67,10 +66,13 @@ public class UserServiceImpl implements UserService {
     public boolean isStudent(User user) {
         return false;
     }
-    @Override
-    public User findByUsername(String username) {
-        return userRepository.findByUsername(username);
+  @Override
+public User findByUsername(String username) {
+      return userRepository.findByUsername(username);
     }
-
+    @Override
+    public boolean existsByUsername(String username) {
+        return userRepository.existsByUsername(username); // Kiểm tra sự tồn tại của người dùng theo username
+    }
 
 }

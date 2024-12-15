@@ -1,23 +1,17 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
 import "./landingpage.css";
 import img1 from "../assets/product1.png";
 import img2 from "../assets/product2.png";
 import img3 from "../assets/product3.png";
-import img4 from "../../resources/dang.png";
+
 import { useDispatch, useSelector } from "react-redux";
-// import BestSeller from "../bestsellers/BestSeller";
-import { Row, Col, Container } from "reactstrap";
+import { Row, Container } from "reactstrap";
 import { getList } from "../../redux/shopSlice";
 import Features from "../feature/Features";
-import CarouselMain from "../carousel/CarouselMain";
-// import Sale from "../sale/Sale";
-import ContactUs from "../contact/ContactUs";
 import Review from "../Review/Review";
-import Relatedbrand from "../relatedbrand/Relatedbrand";
 import Aos from "aos";
 import "aos/dist/aos.css";
-import Slider from "react-slick";
+
 
 export default function LandingPage() {
   const dispatch = useDispatch();
@@ -179,10 +173,6 @@ export default function LandingPage() {
             <CarouselMain products={products} />
           </Container>
         </div> */}
-
-        {/* <Relatedbrand /> */}
-        {/* <Sale /> */}
-        <ContactUs />
         <Review />
       </Container>
     </div>

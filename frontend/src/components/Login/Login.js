@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";  // Thêm import useDispatch
 import {
   Box,
   Button,
@@ -11,15 +12,17 @@ import {
 } from "@mui/material";
 import "./Login.css";
 import Aos from "aos";
-import axiosInstance from "../../axiosInstance"; // Đảm bảo axiosInstance được import
+import axiosInstance from "../../utils/axiosInstance";
 import { useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import { login } from '../../redux/userSlice';  // Thêm import action login nếu cần
 
 export default function Login() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [errorMessage, setErrorMessage] = useState(""); // New state for error messages
+  const [errorMessage, setErrorMessage] = useState("");
   const navigate = useNavigate();
+  const dispatch = useDispatch();  // Khởi tạo dispatch
 
   useEffect(() => {
     Aos.init();
@@ -28,7 +31,7 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setErrorMessage("");  // Reset error message before submitting
+    setErrorMessage("");
 
     try {
       const response = await axiosInstance.post('/api/users/login', {
@@ -36,9 +39,16 @@ export default function Login() {
         password: password
       });
 
-      console.log(response.data);  // Kiểm tra dữ liệu trả về từ API
+      console.log(response.data);
 
-      // Nếu đăng nhập thành công, hiển thị thông báo và chuyển hướng
+      // Lưu token vào localStorage và thông tin người dùng
+      localStorage.setItem('accessToken', response.data.token);
+      localStorage.setItem('role', response.data.role);
+      localStorage.setItem('userInfo', JSON.stringify(response.data));
+
+      // Thực hiện dispatch action login vào Redux
+      dispatch(login({ username: response.data.username, role: response.data.role }));
+
       Swal.fire({
         title: 'Login Successful!',
         text: 'You will be redirected shortly.',
@@ -48,12 +58,12 @@ export default function Login() {
       });
 
       setTimeout(() => {
-        navigate("/");  // Redirect to home page after 2 seconds
+        navigate("/");
       }, 2000);
 
     } catch (error) {
       console.error('Có lỗi xảy ra:', error.response ? error.response.data : error.message);
-      setErrorMessage('Something went wrong');  // Hiển thị thông báo lỗi cho người dùng
+      setErrorMessage('Có lỗi xảy ra');
     }
   };
 
@@ -77,7 +87,7 @@ export default function Login() {
                       <Typography variant="body1" color="text.secondary">
                         Welcome back
                       </Typography>
-                      {errorMessage && <p className="text-danger">{errorMessage}</p>} {/* Display error message */}
+                      {errorMessage && <p className="text-danger">{errorMessage}</p>}
                     </Box>
                     <form onSubmit={handleSubmit}>
                       <FormControl fullWidth variant="outlined" margin="normal">

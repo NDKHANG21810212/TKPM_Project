@@ -1,7 +1,9 @@
 package com.example.TKPM_Project.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
-import com.example.TKPM_Project.service.LLMApiService;
+
+import java.util.List;
 
 @Entity
 @Table(name = "questions")
@@ -12,9 +14,6 @@ public class Question {
 
     @Column(name = "question_text")
     private String questionText;
-
-    @Column(name = "correct_answer")
-    private String correctAnswer;
 
     @ManyToOne
     @JoinColumn(name = "category_id", referencedColumnName = "id")
@@ -27,27 +26,10 @@ public class Question {
     private String audioPath;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "exam_id", nullable = false)
     private Exam exam;
 
-    // Thêm trường để lưu trữ phản hồi của API LLM
-    @Column(name = "feedback")
-    private String feedback;
-
-    // Constructors
-    public Question() {
-    }
-
-    public Question(String questionText, String correctAnswer, Category category, String passageText, String audioPath, Exam exam) {
-        this.questionText = questionText;
-        this.correctAnswer = correctAnswer;
-        this.category = category;
-        this.passageText = passageText;
-        this.audioPath = audioPath;
-        this.exam = exam;
-    }
-
-    // Getters và Setters
     public Long getId() {
         return id;
     }
@@ -62,14 +44,6 @@ public class Question {
 
     public void setQuestionText(String questionText) {
         this.questionText = questionText;
-    }
-
-    public String getCorrectAnswer() {
-        return correctAnswer;
-    }
-
-    public void setCorrectAnswer(String correctAnswer) {
-        this.correctAnswer = correctAnswer;
     }
 
     public Category getCategory() {
@@ -104,22 +78,26 @@ public class Question {
         this.exam = exam;
     }
 
-    // Phương thức để gọi API LLM và phân tích câu trả lời
-    public void analyzeAnswerWithLLM(String userAnswer) throws Exception {
-        // Sử dụng LLMApiService để gọi API
-        LLMApiService llmApiService = new LLMApiService();
-        String feedback = llmApiService.analyzeAnswer(userAnswer);
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL)
+    private List<Choice> choices; // Mối quan hệ với các lựa chọn câu hỏi
 
-        // Lưu phản hồi từ LLM
-        this.feedback = feedback;
+    // Constructors, Getters và Setters
+    public Question() {}
+
+    public Question(String questionText, Category category, String passageText, String audioPath, Exam exam) {
+        this.questionText = questionText;
+        this.category = category;
+        this.passageText = passageText;
+        this.audioPath = audioPath;
+        this.exam = exam;
     }
 
-    // Getter và Setter cho phản hồi
-    public String getFeedback() {
-        return feedback;
+    // Getters và Setters
+    public List<Choice> getChoices() {
+        return choices;
     }
 
-    public void setFeedback(String feedback) {
-        this.feedback = feedback;
+    public void setChoices(List<Choice> choices) {
+        this.choices = choices;
     }
 }

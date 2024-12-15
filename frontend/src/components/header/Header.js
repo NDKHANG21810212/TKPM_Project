@@ -18,7 +18,6 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import ContactMailIcon from "@mui/icons-material/ContactMail";
 import LocalMallIcon from "@mui/icons-material/LocalMall";
 import InfoIcon from "@mui/icons-material/Info";
-
 export default function Header() {
   const [sidebarOpen, setSidebarOpen] = useState(false); // Sidebar state
   const dispatch = useDispatch();
@@ -27,148 +26,155 @@ export default function Header() {
 
   const handleLogout = () => {
     dispatch(logout());
-    navigate("/");
+    navigate("/"); // Điều hướng về trang chủ sau khi logout
   };
 
   // Toggle sidebar
   const toggleSidebar = () => setSidebarOpen(!sidebarOpen);
 
   return (
-    <div className="header">
-      <Container>
-        <Navbar className="navbar-expand-md" light>
-          {/* Logo */}
-          <Link to="/">
-            <img className="logo" src={logo} alt="ENG EXAM" />
-          </Link>
+      <div className="header">
+        <Container>
+          <Navbar className="navbar-expand-md" light>
+            {/* Logo */}
+            <Link to="/">
+              <img className="logo" src={logo} alt="ENG EXAM" />
+            </Link>
 
-          {/* Main Navigation Links */}
-          <Collapse isOpen={true} navbar>
-            <Nav className="navbar-nav m-auto align-items-center" navbar>
-              <NavItem>
-                <Link to="/" className="header-item">
-                  Trang chủ
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/products" className="header-item">
-                  Lớp học
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/contact" className="header-item">
-                  Thông tin
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/blog" className="header-item">
-                  Diễn đàn
-                </Link>
-              </NavItem>
-              <NavItem>
-                <Link to="/Quiz" className="header-item">
-                  Quiz
-                </Link>
-              </NavItem>
-            </Nav>
-          </Collapse>
+            {/* Main Navigation Links */}
+            <Collapse isOpen={true} navbar>
+              <Nav className="navbar-nav m-auto align-items-center" navbar>
+                <NavItem>
+                  <Link to="/" className="header-item">
+                    Trang chủ
+                  </Link>
+                </NavItem>
+                <NavItem>
+                  <Link to="/products" className="header-item">
+                    Môn học
+                    <ul className="dropdown">
+                      <li><Link to="/quizQuestion" className="dropdown-item">Listen</Link></li>
+                      <li><Link to="/read" className="dropdown-item">Read</Link></li>
+                      <li><Link to="/speak" className="dropdown-item">Speak</Link></li>
+                      <li><Link to="/write" className="dropdown-item">Write</Link></li>
+                    </ul>
+                  </Link>
 
-          {/* Icons and Hamburger Menu */}
-          <div className="header-right">
-            {/* Icons */}
-            <div className="header-icons">
-              <Link to="/cart" className="header-icon">
-                <i className="fa-solid fa-cart-shopping"></i>
-              </Link>
-              <Link to="/login" className="header-icon">
-                <i className="fa-solid fa-user"></i>
-              </Link>
+                </NavItem>
+
+                <NavItem>
+                  <Link to="/Quiz" className="header-item">
+                   Thi Thử
+                  </Link>
+                </NavItem>
+              </Nav>
+            </Collapse>
+
+            {/* Icons and Hamburger Menu */}
+            <div className="header-right">
+              {/* Icons */}
+              <div className="header-icons">
+                <Link to="/cart" className="header-icon">
+                  <i className="fa-solid fa-cart-shopping"></i>
+                </Link>
+
+                {/* Hiển thị tên người dùng nếu đã đăng nhập, nếu chưa thì hiển thị link login */}
+                {userInfo ? (
+                    <div className="header-icon">
+                      <span className="user-name">{userInfo.username}</span>
+                      <IconButton onClick={handleLogout}>
+                        <i className="fa-solid fa-sign-out"></i>
+                      </IconButton>
+                    </div>
+                ) : (
+                    <Link to="/login" className="header-icon">
+                      <i className="fa-solid fa-user"></i>
+                    </Link>
+                )}
+              </div>
+
+              {/* Hamburger Menu Icon */}
+              <IconButton className="hamburger-menu" onClick={toggleSidebar}>
+                <MenuIcon fontSize="large" />
+              </IconButton>
             </div>
+          </Navbar>
+        </Container>
 
-            {/* Hamburger Menu Icon */}
-            <IconButton className="hamburger-menu" onClick={toggleSidebar}>
-              <MenuIcon fontSize="large" />
-            </IconButton>
-          </div>
-        </Navbar>
-      </Container>
-
-      {/* Sidebar */}
-      <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
-        <div className="sidebar-content">
-          <ul className="sidebar-menu">
-            <li>
-              <Link to="/" className="sidebar-item" onClick={toggleSidebar}>
-                <HomeIcon />
-                <span>Trang Chủ</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/products" className="sidebar-item" onClick={toggleSidebar}>
-                <LocalMallIcon />
-                <span>Các Khoá Học</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" className="sidebar-item" onClick={toggleSidebar}>
-                <InfoIcon />
-                <span>Diễn Đàn</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/contact" className="sidebar-item" onClick={toggleSidebar}>
-                <ContactMailIcon />
-                <span>Liên Hệ</span>
-              </Link>
-            </li>
-            <li>
-              <Link to="/cart" className="sidebar-item" onClick={toggleSidebar}>
-                <ShoppingCartIcon />
-                <span>Khoá Học Đã Đăng Ký</span>
-              </Link>
-            </li>
-            <li>
-              {userInfo ? (
-                <div className="sidebar-item" onClick={() => {
-                  handleLogout();
-                  toggleSidebar();
-                }}>
-                  <i className="fa-solid fa-sign-out"></i>
-                  <span>Logout</span>
-                </div>
-              ) : (
-                <Link to="/login" className="sidebar-item" onClick={toggleSidebar}>
-                  <i className="fa-solid fa-user"></i>
-                  <span>Login</span>
+        {/* Sidebar */}
+        <div className={`sidebar ${sidebarOpen ? "open" : ""}`}>
+          <div className="sidebar-content">
+            <ul className="sidebar-menu">
+              <li>
+                <Link to="/" className="sidebar-item" onClick={toggleSidebar}>
+                  <HomeIcon />
+                  <span>Trang Chủ</span>
                 </Link>
-              )}
-            </li>
-          </ul>
+              </li>
+              <li>
+                <Link to="/products" className="sidebar-item" onClick={toggleSidebar}>
+                  <LocalMallIcon />
+                  <span>Các Khoá Học</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/blog" className="sidebar-item" onClick={toggleSidebar}>
+                  <InfoIcon />
+                  <span>Diễn Đàn</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/contact" className="sidebar-item" onClick={toggleSidebar}>
+                  <ContactMailIcon />
+                  <span>Liên Hệ</span>
+                </Link>
+              </li>
+              <li>
+                <Link to="/cart" className="sidebar-item" onClick={toggleSidebar}>
+                  <ShoppingCartIcon />
+                  <span>Khoá Học Đã Đăng Ký</span>
+                </Link>
+              </li>
+              <li>
+                {userInfo ? (
+                    <div className="sidebar-item" onClick={() => {
+                      handleLogout();
+                      toggleSidebar();
+                    }}>
+                      <i className="fa-solid fa-sign-out"></i>
+                      <span>Logout</span>
+                    </div>
+                ) : (
+                    <Link to="/login" className="sidebar-item" onClick={toggleSidebar}>
+                      <i className="fa-solid fa-user"></i>
+                      <span>Login</span>
+                    </Link>
+                )}
+              </li>
+            </ul>
+          </div>
         </div>
+
+        {/* Overlay */}
+        {sidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
+
+        {/* Scroll to Top Button */}
+        <button
+            className="totop"
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        >
+          <svg className="svgIcon" viewBox="0 0 384 512">
+            <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
+          </svg>
+        </button>
+
+        {/* Call Button */}
+        <section className="call-button">
+          <p className="cc-calto-action-ripple">
+            <i className="fa-solid fa-phone"></i>
+            <span className="num">000_0000_000</span>
+          </p>
+        </section>
       </div>
-
-      {/* Overlay */}
-      {sidebarOpen && <div className="overlay" onClick={toggleSidebar}></div>}
-
-      {/* Scroll to Top Button */}
-      <button
-        className="totop"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-      >
-        <svg className="svgIcon" viewBox="0 0 384 512">
-          <path d="M214.6 41.4c-12.5-12.5-32.8-12.5-45.3 0l-160 160c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L160 141.2V448c0 17.7 14.3 32 32 32s32-14.3 32-32V141.2L329.4 246.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3l-160-160z"></path>
-        </svg>
-      </button>
-
-      {/* Call Button */}
-      <section className="call-button">
-        <p className="cc-calto-action-ripple">
-          <i className="fa-solid fa-phone"></i>
-          <span className="num">000_0000_000</span>
-        </p>
-      </section>
-    </div>
   );
 }
-
-

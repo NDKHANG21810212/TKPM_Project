@@ -61,13 +61,29 @@ public class UserController {
 
     // Đăng nhập
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody LoginRequest loginRequest) {
-        // Kiểm tra tài khoản và mật khẩu
-        if ("admin".equals(loginRequest.getUsername()) && "password".equals(loginRequest.getPassword())) {
-            return ResponseEntity.ok("Login successful!");
+    public ResponseEntity<User> login(@RequestBody LoginRequest loginRequest) {
+        // Kiểm tra thông tin đăng nhập
+        if (userService.existsByUsername(loginRequest.getUsername())) {
+            User user = userService.findByUsername(loginRequest.getUsername());
+            // Kiểm tra mật khẩu
+            if (user.getPassword().equals(loginRequest.getPassword())) {
+                return ResponseEntity.ok(user);  // Đăng nhập thành công
+            }
         }
-        return ResponseEntity.status(401).body("Invalid credentials");
-    }
+
+        // Nếu không đăng nhập thành công, tạo guest user và trả về
+        User guestUser = new User();
+        guestUser.setId(5L); // Id mặc định cho guest
+        guestUser.setUsername("guest_user");
+        guestUser.setPassword(null); // Không cần mật khẩu cho guest
+        guestUser.setEmail("guest@example.com");
+        guestUser.setRole(Role.Guest); // Vai trò guest
+        guestUser.setGuest(true); // Đánh dấu là guest
+
+        return ResponseEntity.ok(guestUser); // Trả về đối tượng guest
+
+}
+
 
     // Đăng xuất
     @PostMapping("/logout")

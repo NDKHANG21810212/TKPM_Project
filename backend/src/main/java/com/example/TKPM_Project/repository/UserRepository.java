@@ -15,6 +15,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     Optional<User> findByEmail(String email);
     // Tìm người dùng theo tên người dùng (username)
     User findByUsername(String username);
+    boolean existsByUsername(String username);
     // Tìm tất cả người dùng khách
     @Query("SELECT u FROM User u WHERE u.isGuest = true")
     List<User> findAllGuests();

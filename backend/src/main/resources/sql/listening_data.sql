@@ -13,19 +13,19 @@ INSERT INTO questions (audio_path, question_text, category_id,exam_id) VALUES
                ('/audio/T1-Part1.mp3', 'What is the purpose of the message?', 1,1),
                ('/audio/T1-Part1.mp3', 'Who is the speaker?', 1,1);
 -- Phần 2: Câu hỏi 9-20
-INSERT INTO questions (audio_path, correct_answer, passage_text, question_text, category_id,exam_id) VALUES
-                   ('T1-Part 2', 'To confirm an appointment', 'Questions 9 to 12 refer to the following conversation.', 'Why is the woman calling?', 1,1),
-                   ('T1-Part 2', 'He is very busy these days.', 'Questions 9 to 12 refer to the following conversation.', 'What is probably true about the man?', 1,1),
-                   ('T1-Part 2', 'Show up to his appointment a little early', 'Questions 9 to 12 refer to the following conversation.', 'What does the woman ask the man to do?', 1,1),
-                   ('T1-Part 2', 'Some insurance documents', 'Questions 9 to 12 refer to the following conversation.', 'What will the man likely take to his appointment?', 1,1),
-                   ('T1-Part 2', 'Physicians', 'Questions 13 to 16 refer to the following conversation.', 'Who most likely are they?', 1,1),
-                   ('T1-Part 2', 'Her mother-in-law', 'Questions 13 to 16 refer to the following conversation.', 'Who has been mentioning the study to the woman?', 1,1),
-                   ('T1-Part 2', 'Friday', 'Questions 13 to 16 refer to the following conversation.', 'When will they likely attend the conference?', 1,1),
-                   ('T1-Part 2', 'Her mother-in-law', 'Questions 13 to 16 refer to the following conversation.', 'Who is going to visit the woman?', 1,1),
-                   ('T1-Part 2', 'A newly released product', 'Questions 17 to 20 refer to the following conversation.', 'What are they talking about?', 1,1),
-                   ('T1-Part 2', 'The free service they provided', 'Questions 17 to 20 refer to the following conversation.', 'According to the man, what was the customer most satisfied with?', 1,1),
-                   ('T1-Part 2', 'The great service', 'Questions 17 to 20 refer to the following conversation.', 'What do the speakers feel makes customers happy?', 1,1),
-                   ('T1-Part 2', 'He thought the warranty had expired.', 'Questions 17 to 20 refer to the following conversation.', 'What is true about the customer?', 1,1);
+INSERT INTO questions (audio_path, passage_text, question_text, category_id,exam_id) VALUES
+                   ('T1-Part 2', 'Questions 9 to 12 refer to the following conversation.', 'Why is the woman calling?', 1,1),
+                   ('T1-Part 2', 'Questions 9 to 12 refer to the following conversation.', 'What is probably true about the man?', 1,1),
+                   ('T1-Part 2',  'Questions 9 to 12 refer to the following conversation.', 'What does the woman ask the man to do?', 1,1),
+                   ('T1-Part 2', 'Questions 9 to 12 refer to the following conversation.', 'What will the man likely take to his appointment?', 1,1),
+                   ('T1-Part 2',  'Questions 13 to 16 refer to the following conversation.', 'Who most likely are they?', 1,1),
+                   ('T1-Part 2',  'Questions 13 to 16 refer to the following conversation.', 'Who has been mentioning the study to the woman?', 1,1),
+                   ('T1-Part 2', 'Questions 13 to 16 refer to the following conversation.', 'When will they likely attend the conference?', 1,1),
+                   ('T1-Part 2',  'Questions 13 to 16 refer to the following conversation.', 'Who is going to visit the woman?', 1,1),
+                   ('T1-Part 2',  'Questions 17 to 20 refer to the following conversation.', 'What are they talking about?', 1,1),
+                   ('T1-Part 2',  'Questions 17 to 20 refer to the following conversation.', 'According to the man, what was the customer most satisfied with?', 1,1),
+                   ('T1-Part 2',  'Questions 17 to 20 refer to the following conversation.', 'What do the speakers feel makes customers happy?', 1,1),
+                   ('T1-Part 2', 'Questions 17 to 20 refer to the following conversation.', 'What is true about the customer?', 1,1);
 -- Phần 3: Câu hỏi 21-35
 INSERT INTO questions (audio_path, question_text, category_id,exam_id) VALUES
                     (3, 'Why is the woman visiting this office?', 1,1),

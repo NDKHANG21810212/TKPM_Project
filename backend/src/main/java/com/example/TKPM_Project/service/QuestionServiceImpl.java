@@ -34,7 +34,6 @@ public class QuestionServiceImpl implements QuestionService {
             if (ques != null) {
                 // Cập nhật các thuộc tính của câu hỏi
                 ques.setQuestionText(question.getQuestionText());
-                ques.setCorrectAnswer(question.getCorrectAnswer());
                 ques.setCategory(question.getCategory());
                 ques.setPassageText(question.getPassageText());
                 ques.setAudioPath(question.getAudioPath());
